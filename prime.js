@@ -45,24 +45,20 @@ function removeObject(object) {
   app.stage.removeChild(object);
 }
 
-let keyStates = new Array(256);
-const KeyShift = 16;
-const KeyCtrl = 17;
-const KeyAlt = 18;
-const KeySpace = 32;
-const KeyLeft = 37;
-const KeyUp = 38;
-const KeyRight = 39;
-const KeyDown = 40;
+let keyStates = new Map();
 
-for (i = 0; i < 256; ++i) {
-  keyStates[i] = false;
+function isKeyDown(key) {
+  if (keyStates.has(key)) {
+    return keyStates.get(key);
+  } else {
+    return false;
+  }
 }
 
-document.onkeydown = function(e) {
-  keyStates[e.keyCode] = true;
-}
+document.addEventListener('keydown', (e) => {
+  keyStates.set(e.key, true);
+}, false);
 
-document.onkeyup = function(e) {
-  keyStates[e.keyCode] = false;
-}
+document.addEventListener('keyup', (e) => {
+  keyStates.set(e.key, false);
+}, false);

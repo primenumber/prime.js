@@ -15,13 +15,13 @@ const velocity = 3;
 
 // main loop
 function mainloop(delta) {
-  if (keyStates[KeyRight]) {
+  if (isKeyDown("ArrowRight")) {
     cat.x += velocity;
-  } if (keyStates[KeyLeft]) {
+  } if (isKeyDown("ArrowLeft")) {
     cat.x -= velocity;
-  } if (keyStates[KeyUp]) {
+  } if (isKeyDown("ArrowUp")) {
     cat.y -= velocity;
-  } if (keyStates[KeyDown]) {
+  } if (isKeyDown("ArrowDown")) {
     cat.y += velocity;
   }
 }
