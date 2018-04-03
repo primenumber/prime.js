@@ -1,5 +1,6 @@
 let width = 800;
 let height = 600;
+let backgroundColor = 0x000000;
 
 function isGoogleChrome() {
   var userAgent = window.navigator.userAgent.toLowerCase();
@@ -19,6 +20,7 @@ function needToDisableWebGL() {
 let app = new PIXI.Application({width: width, height: height, forceCanvas: needToDisableWebGL()});
 
 window.onload = () => {
+  app.renderer.backgroundColor = backgroundColor;
   document.body.appendChild(app.view);
   app.ticker.add(delta => mainloop(delta));
 }
