@@ -64,3 +64,24 @@ document.addEventListener('keydown', (e) => {
 document.addEventListener('keyup', (e) => {
   keyStates.set(e.key, false);
 }, false);
+
+function hitTestRectangle(r1, r2) {
+  r1.left = r1.x - r1.anchor.x * r1.width;
+  r1.top = r1.y - r1.anchor.y * r1.height;
+  r1.centerX = r1.left + r1.width / 2;
+  r1.centerY = r1.top + r1.height / 2;
+
+  r2.left = r2.x - r2.anchor.x * r2.width;
+  r2.top = r2.y - r2.anchor.y * r2.height;
+  r2.centerX = r2.left + r2.width / 2;
+  r2.centerY = r2.top + r2.height / 2;
+
+  const vx = r1.centerX - r2.centerX;
+  const vy = r1.centerY - r2.centerY;
+
+  const combinedHalfWidth = (r1.width + r2.width) / 2;
+  const combinedHaldHeight = (r1.height + r2.height) / 2;
+
+  return Math.abs(vx) < combinedHalfWidth &&
+      Math.abs(vy) < combinedHaldHeight;
+}
