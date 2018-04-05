@@ -11,16 +11,22 @@ loadImages([
 // init
 let cat;
 let frame_rate_txt;
+let layer_hands;
+let layer_mouses;
 let hands = [];
 let mouses = [];
 function init() {
+  layer_hands = new PIXI.Container();
+  stage.addChild(layer_hands);
+  layer_mouses = new PIXI.Container();
+  stage.addChild(layer_mouses);
   cat = ImageObject("cat.png");
   cat.anchor.set(0.5, 0.5);
   cat.x = 400;
   cat.y = 400;
-  addObject(cat);
+  stage.addChild(cat);
   frame_rate_txt = TextObject("Frame: 0fps");
-  addObject(frame_rate_txt);
+  stage.addChild(frame_rate_txt);
 }
 
 const cat_v = 3;
@@ -50,7 +56,7 @@ function mainloop(delta) {
       new_hand.vx = vx[i];
       new_hand.vy = vy[i];
       new_hand.hp = 1;
-      addObject(new_hand);
+      layer_hands.addChild(new_hand);
       hands.push(new_hand);
     }
     cooltime = 10;
@@ -68,7 +74,7 @@ function mainloop(delta) {
     new_mouse.vx = 0;
     new_mouse.vy = 5;
     new_mouse.hp = 3;
-    addObject(new_mouse);
+    layer_mouses.addChild(new_mouse);
     mouses.push(new_mouse);
     cooltime_mouse = 60;
   } else {
@@ -86,12 +92,12 @@ function mainloop(delta) {
   });
   hands = hands.filter((hand) => {
     const result = hand.y > -100 && hand.hp > 0;
-    if (!result) removeObject(hand);
+    if (!result) layer_hands.removeChild(hand);
     return result;
   });
   mouses = mouses.filter((mouse) => {
     const result = mouse.y < 700 && mouse.hp > 0;
-    if (!result) removeObject(mouse);
+    if (!result) layer_mouses.removeChild(mouse);
     return result;
   });
 }

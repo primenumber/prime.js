@@ -39,13 +39,11 @@ function TextObject(text, style) {
   return new PIXI.Text(text, style);
 }
 
-function addObject(object) {
-  app.stage.addChild(object);
+function Layer() {
+  return new PIXI.Container();
 }
 
-function removeObject(object) {
-  app.stage.removeChild(object);
-}
+let stage = app.stage;
 
 let keyStates = new Map();
 
