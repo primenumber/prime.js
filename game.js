@@ -1,5 +1,7 @@
 // settings
-backgroundColor = 0xFFFFFF;
+backgroundColor = 0x7F7F7F;
+width = 1024;
+height = 768;
 
 // load
 loadImages([
@@ -96,7 +98,7 @@ function mainloop(delta) {
     return result;
   });
   mouses = mouses.filter((mouse) => {
-    const result = mouse.y < 700 && mouse.hp > 0;
+    const result = mouse.y < app.stage.height + 100 && mouse.hp > 0;
     if (!result) layer_mouses.removeChild(mouse);
     return result;
   });

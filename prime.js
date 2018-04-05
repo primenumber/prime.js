@@ -26,8 +26,8 @@ function needToDisableWebGL() {
 }
 
 let app = new Application({width: width, height: height, forceCanvas: needToDisableWebGL()});
-
 window.onload = () => {
+  app.renderer.resize(width, height);
   app.renderer.backgroundColor = backgroundColor;
   document.body.appendChild(app.view);
   app.ticker.add(delta => mainloop(delta));
