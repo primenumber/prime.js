@@ -10,7 +10,7 @@ loadImages([
 
 // init
 let cat;
-let hello;
+let frame_rate_txt;
 let hands = [];
 let mouses = [];
 function init() {
@@ -19,8 +19,8 @@ function init() {
   cat.x = 400;
   cat.y = 400;
   addObject(cat);
-  hello = TextObject("Hello, World!", {fill: 'white'});
-  addObject(hello);
+  frame_rate_txt = TextObject("Frame: 0fps");
+  addObject(frame_rate_txt);
 }
 
 const cat_v = 3;
@@ -29,6 +29,7 @@ const cat_v = 3;
 let cooltime = 0;
 let cooltime_mouse = 0;
 function mainloop(delta) {
+  frame_rate_txt.text = "Frame rate: " + Math.round(60/delta).toString();
   if (isKeyDown("ArrowRight")) {
     cat.x += cat_v;
   } if (isKeyDown("ArrowLeft")) {
