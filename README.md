@@ -14,3 +14,7 @@ $ cd prime.js-master
 # Develop game
 
 Write your code on game.js.
+
+# Documents
+
+[Documents](https://github.com/primenumber/prime.js/wiki)
