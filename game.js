@@ -16,16 +16,16 @@ let layer_mouses;
 let hands = [];
 let mouses = [];
 function init() {
-  layer_hands = new PIXI.Container();
+  layer_hands = new Container();
   stage.addChild(layer_hands);
-  layer_mouses = new PIXI.Container();
+  layer_mouses = new Container();
   stage.addChild(layer_mouses);
   cat = ImageObject("cat.png");
   cat.anchor.set(0.5, 0.5);
   cat.x = 400;
   cat.y = 400;
   stage.addChild(cat);
-  frame_rate_txt = TextObject("Frame: 0fps");
+  frame_rate_txt = new Text("Frame: 0fps");
   stage.addChild(frame_rate_txt);
 }
 

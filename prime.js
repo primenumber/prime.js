@@ -1,3 +1,11 @@
+let Application = PIXI.Application,
+    Container = PIXI.Container,
+    loader = PIXI.loader,
+    resources = PIXI.loader.resources,
+    TextureCache = PIXI.utils.TextureCache,
+    Sprite = PIXI.Sprite,
+    Rectangle = PIXI.Rectangle,
+    Text = PIXI.Text;
 let width = 800;
 let height = 600;
 let backgroundColor = 0x000000;
@@ -17,7 +25,7 @@ function needToDisableWebGL() {
   return isGoogleChrome() && isLocal();
 }
 
-let app = new PIXI.Application({width: width, height: height, forceCanvas: needToDisableWebGL()});
+let app = new Application({width: width, height: height, forceCanvas: needToDisableWebGL()});
 
 window.onload = () => {
   app.renderer.backgroundColor = backgroundColor;
@@ -26,21 +34,13 @@ window.onload = () => {
 }
 
 function loadImages(image_url) {
-  PIXI.loader
+  loader
     .add(image_url)
     .load(init);
 }
 
 function ImageObject(image_url) {
-  return new PIXI.Sprite(PIXI.utils.TextureCache[image_url]);
-}
-
-function TextObject(text, style) {
-  return new PIXI.Text(text, style);
-}
-
-function Layer() {
-  return new PIXI.Container();
+  return new Sprite(PIXI.utils.TextureCache[image_url]);
 }
 
 let stage = app.stage;
