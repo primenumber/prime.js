@@ -10,6 +10,10 @@ loadImages([
   "mouse.png"
 ]);
 
+loadSounds([
+    "sound.js/sounds/shoot.wav"
+]);
+
 // init
 let cat;
 let frame_rate_txt;
@@ -18,6 +22,7 @@ let layer_hands;
 let layer_mouses;
 let hands = [];
 let mouses = [];
+let shoot;
 function init() {
   layer_hands = new Container();
   stage.addChild(layer_hands);
@@ -33,6 +38,7 @@ function init() {
   points_txt = new Text("Points: 0pt");
   points_txt.y = 40;
   stage.addChild(points_txt);
+  shoot = sounds["sound.js/sounds/shoot.wav"];
 }
 
 const cat_v = 3;
@@ -66,6 +72,7 @@ function mainloop(delta) {
       new_hand.hp = 1;
       layer_hands.addChild(new_hand);
       hands.push(new_hand);
+      shoot.play();
     }
     cooltime = 10;
   } else {

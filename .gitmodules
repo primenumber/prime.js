@@ -1,0 +1,3 @@
+[submodule "sound.js"]
+	path = sound.js
+	url = https://github.com/kittykatattack/sound.js.git

@@ -26,17 +26,35 @@ function needToDisableWebGL() {
 }
 
 let app = new Application({width: width, height: height, forceCanvas: needToDisableWebGL()});
+
+let loadImagesPromise;
+let loadSoundsPromise;
+
+function endLoad() {
+  init();
+  app.ticker.add(delta => mainloop(delta));
+}
+
 window.onload = () => {
   app.renderer.resize(width, height);
   app.renderer.backgroundColor = backgroundColor;
   document.body.appendChild(app.view);
-  app.ticker.add(delta => mainloop(delta));
+  Promise.all([loadImagesPromise, loadSoundsPromise]).then(endLoad);
 }
 
 function loadImages(image_url) {
-  loader
-    .add(image_url)
-    .load(init);
+  loadImagesPromise = new Promise((resolve) => {
+    loader
+      .add(image_url)
+      .load(resolve);
+  });
+}
+
+function loadSounds(sound_urls) {
+  sounds.load(sound_urls);
+  loadSoundsPromise = new Promise((resolve) => {
+    sounds.whenLoaded = () => { resolve(); };
+  });
 }
 
 function ImageObject(image_url) {
