@@ -13,6 +13,7 @@ loadImages([
 // init
 let cat;
 let frame_rate_txt;
+let points_txt;
 let layer_hands;
 let layer_mouses;
 let hands = [];
@@ -29,6 +30,9 @@ function init() {
   stage.addChild(cat);
   frame_rate_txt = new Text("Frame: 0fps");
   stage.addChild(frame_rate_txt);
+  points_txt = new Text("Points: 0pt");
+  points_txt.y = 40;
+  stage.addChild(points_txt);
 }
 
 const cat_v = 3;
@@ -36,8 +40,10 @@ const cat_v = 3;
 // main loop
 let cooltime = 0;
 let cooltime_mouse = 0;
+let points = 0;
 function mainloop(delta) {
   frame_rate_txt.text = `Frame rate: ${ Math.round(60/delta).toString()  }fps`;
+  points_txt.text = `Points: ${ points }pt`;
   if (isKeyDown("ArrowRight")) {
     cat.x += cat_v;
   } if (isKeyDown("ArrowLeft")) {
@@ -99,7 +105,10 @@ function mainloop(delta) {
   });
   mouses = mouses.filter((mouse) => {
     const result = mouse.y < app.stage.height + 100 && mouse.hp > 0;
-    if (!result) layer_mouses.removeChild(mouse);
+    if (!result) {
+      layer_mouses.removeChild(mouse);
+      points++;
+    }
     return result;
   });
 }
