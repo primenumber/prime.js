@@ -35,7 +35,7 @@ const cat_v = 3;
 let cooltime = 0;
 let cooltime_mouse = 0;
 function mainloop(delta) {
-  frame_rate_txt.text = "Frame rate: " + Math.round(60/delta).toString();
+  frame_rate_txt.text = "Frame rate: " + Math.round(60/delta).toString() + "fps";
   if (isKeyDown("ArrowRight")) {
     cat.x += cat_v;
   } if (isKeyDown("ArrowLeft")) {
