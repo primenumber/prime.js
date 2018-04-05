@@ -42,10 +42,10 @@ window.onload = () => {
   Promise.all([loadImagesPromise, loadSoundsPromise]).then(endLoad);
 }
 
-function loadImages(image_url) {
+function loadImages(image_urls) {
   loadImagesPromise = new Promise((resolve) => {
     loader
-      .add(image_url)
+      .add(image_urls)
       .load(resolve);
   });
 }
