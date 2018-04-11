@@ -81,6 +81,32 @@ document.addEventListener('keyup', (e) => {
   keyStates.set(e.key, false);
 }, false);
 
+let mouseX = 0.0;
+let mouseY = 0.0;
+
+document.addEventListener('mousemove', (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+}, false);
+
+let mouseStates = new Map();
+
+function isMouseDown(buttonNumber) {
+  if (mouseStates.has(buttonNumber)) {
+    return mouseStates.get(buttonNumber);
+  } else {
+    return false;
+  }
+}
+
+document.addEventListener('mousedown', (e) => {
+  mouseStates.set(e.button, true);
+}, false);
+
+document.addEventListener('mouseup', (e) => {
+  mouseStates.set(e.button, false);
+}, false);
+
 function hitTestRectangle(r1, r2) {
   r1.left = r1.x - r1.anchor.x * r1.width;
   r1.top = r1.y - r1.anchor.y * r1.height;

@@ -18,6 +18,7 @@ loadSounds([
 let cat;
 let frame_rate_txt;
 let points_txt;
+let mouse_txt;
 let layer_hands;
 let layer_mouses;
 let hands = [];
@@ -38,6 +39,9 @@ function init() {
   points_txt = new Text("Points: 0pt");
   points_txt.y = 40;
   stage.addChild(points_txt);
+  mouse_txt = new Text("Mouse: X=0.0, Y=0.0, Up");
+  mouse_txt.y = 80;
+  stage.addChild(mouse_txt);
   shoot = sounds["sound.js/sounds/shoot.wav"];
 }
 
@@ -50,6 +54,7 @@ let points = 0;
 function mainloop(delta) {
   frame_rate_txt.text = `Frame rate: ${ Math.round(60/delta).toString()  }fps`;
   points_txt.text = `Points: ${ points }pt`;
+  mouse_txt.text = `Mouse: X=${ mouseX }, Y=${ mouseY }, ${ isMouseDown(0) ? "Down" : "Up" }`;
   if (isKeyDown("ArrowRight")) {
     cat.x += cat_v;
   } if (isKeyDown("ArrowLeft")) {
